@@ -25,5 +25,8 @@ class Main {
 		redirect("main/derp");
 	}
 	
+	function demo(){
+		load_view("hero");
+	}
 	
 }

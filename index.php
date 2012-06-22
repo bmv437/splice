@@ -3,12 +3,12 @@
 $application_folder = "app/";
 $system_folder = "system/";
 
-$self = "index.php";
+//FULLE PATH AFTER asdf.com/ starting without slash and ending without slash
+$self = "beta/splice";
 
 $default_controller = "main";
 
 
-include_once($system_folder."core.php");
 
 
 // set to dev, test, or prod
@@ -33,12 +33,16 @@ switch($env){
 		break;	
 }
 
+
+
+
+
 define('INDEX',$self);
 define('ENV',$env);
 define('APP_PATH',$application_folder);
 define('SYS_PATH',$system_folder);
 
-
+include_once($system_folder."core.php");
 
 ##########################################
 # ROUTING
@@ -56,7 +60,10 @@ echo strpos($route,$self)."<br>";
 echo strlen($self)."<br>";
 */
 
-if(strpos($route,$self)===false){
+if($self == ""){
+	define("ROUTE_PATH",$route);
+	//$route="";
+} else if(strpos($route,$self)===false){
 	define("ROUTE_PATH",$route);
 	$route="";
 }else {
@@ -66,7 +73,7 @@ if(strpos($route,$self)===false){
 }
 
 //echo $route;
-
+//die($route);
 # remove trailing slashes
 while(strrpos($route,"/") == strlen($route)-1){
 	$route = substr($route,0,strlen($route)-1);
